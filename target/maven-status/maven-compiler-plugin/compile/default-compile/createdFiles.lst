@@ -1,6 +1,10 @@
 com\mwersky\FinalProject\entity\Credentials.class
+com\mwersky\FinalProject\entity\Card.class
+com\mwersky\FinalProject\service\UserService.class
 com\mwersky\FinalProject\controller\UserController.class
 com\mwersky\FinalProject\repository\UserRepository.class
+com\mwersky\FinalProject\repository\DeckRepository.class
 com\mwersky\FinalProject\entity\User.class
+com\mwersky\FinalProject\entity\Deck.class
 com\mwersky\FinalProject\service\AuthService.class
 com\mwersky\FinalProject\App.class
