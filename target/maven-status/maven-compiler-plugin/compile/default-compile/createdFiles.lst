@@ -1,1 +1,6 @@
+com\mwersky\FinalProject\entity\Credentials.class
+com\mwersky\FinalProject\controller\UserController.class
+com\mwersky\FinalProject\repository\UserRepository.class
+com\mwersky\FinalProject\entity\User.class
+com\mwersky\FinalProject\service\AuthService.class
 com\mwersky\FinalProject\App.class
