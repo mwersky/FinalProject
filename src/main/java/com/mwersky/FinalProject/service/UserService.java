@@ -14,9 +14,9 @@ import com.mwersky.FinalProject.entity.User;
 import com.mwersky.FinalProject.repository.UserRepository;
 
 @Service
-public class AuthService {
+public class UserService {
 	
-	private static final Logger logger = LogManager.getLogger(AuthService.class);
+	private static final Logger logger = LogManager.getLogger(UserService.class);
 	
 	@Autowired
 	private UserRepository userRepository;

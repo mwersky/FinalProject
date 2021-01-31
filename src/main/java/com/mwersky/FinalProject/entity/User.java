@@ -10,11 +10,14 @@ import javax.persistence.Id;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User {
 
 	private Long id;
+	@JsonIgnore
 	private String hash;
 	private String username;
 	private String email;
@@ -29,7 +32,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getHash() {
 		return hash;
 	}

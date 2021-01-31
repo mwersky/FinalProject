@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mwersky.FinalProject.entity.Credentials;
 import com.mwersky.FinalProject.entity.User;
-import com.mwersky.FinalProject.service.AuthService;
+import com.mwersky.FinalProject.service.UserService;
 
 
 
@@ -22,7 +22,7 @@ import com.mwersky.FinalProject.service.AuthService;
 public class UserController {
 	
 	@Autowired
-	private AuthService authService;
+	private UserService authService;
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST) //Create
 	public ResponseEntity<Object> register(@RequestBody Credentials cred) {
@@ -45,6 +45,15 @@ public class UserController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<Object> getUsers() {
 		return new ResponseEntity<Object>(authService.getAllUsers(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Object> getUser(@PathVariable Long id) {
+		try {
+			return new ResponseEntity<Object>(authService.getUserById(id), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
