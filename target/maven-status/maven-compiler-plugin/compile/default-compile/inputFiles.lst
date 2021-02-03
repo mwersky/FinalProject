@@ -3,6 +3,8 @@ C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\Fin
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\repository\UserRepository.java
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\service\UserService.java
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\entity\Card.java
+C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\service\DeckService.java
+C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\controller\DeckController.java
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\repository\DecklistRepository.java
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\repository\CardRepository.java
 C:\Users\dunge\spring-tools-workspace\FinalProject\src\main\java\com\mwersky\FinalProject\entity\Credentials.java
