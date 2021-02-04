@@ -24,12 +24,12 @@ public class DeckController {
 		return new ResponseEntity<Object>(service.getAllDecks(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{deckId}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Object> getDeck(@PathVariable Long deckId) {
 		return new ResponseEntity<Object>(service.getDeck(deckId), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{deckId}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Object> updateDeck(@RequestBody Deck deck, @PathVariable Long deckId) {
 		try {
 			return new ResponseEntity<Object>(service.updateDeck(deck, deckId), HttpStatus.OK);			

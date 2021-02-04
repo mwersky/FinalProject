@@ -2,42 +2,31 @@ package com.mwersky.FinalProject.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Embeddable;
-//import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 @SuppressWarnings("serial")
-@Embeddable
-public class DecklistId implements Serializable { //Don't ask me how this works because I don't know.
-	
-	@ManyToOne
-//	@JoinColumn(name = "deck_id")
-    private Deck deck;
-	
-	@ManyToOne
-//	@JoinColumn(name = "card_id")
-    private Card card;
-
-
+public class DecklistId implements Serializable
+{
+    private Long deck;
+    private Long card;
     
-    public Deck getDeck() {
+    
+    public Long getDeck() {
         return deck;
     }
 
-    public void setDeck(Deck deck) {
+    public void setDeck(Long deck) {
         this.deck = deck;
     }
 
 
-    public Card getCard() {
+    public Long getCard() {
         return card;
     }
 
-    public void setCard(Card card) {
+    public void setCard(Long card) {
         this.card = card;
     }
     
-    @Override
+    @Override //Everything from here on might not be necessary
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -45,8 +34,7 @@ public class DecklistId implements Serializable { //Don't ask me how this works 
         DecklistId that = (DecklistId) o;
 
         if (deck != null ? !deck.equals(that.deck) : that.deck != null) return false;
-        if (card != null ? !card.equals(that.card) : that.card != null)
-            return false;
+        if (card != null ? !card.equals(that.card) : that.card != null) return false;
 
         return true;
     }

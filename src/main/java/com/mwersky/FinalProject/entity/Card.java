@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,12 +15,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "cards")
 public class Card {
-
-	private Long cardId;
+	
+	
+	private Long id;
+	
 	private String game;
+	
+	
 	private String cardName;
+	
 	private String details;
-
+	
+	
 	private Set<Decklist> decklist = new HashSet<Decklist>(0);
 
 	public Card() {
@@ -29,13 +35,13 @@ public class Card {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(unique = true)
+	@Column(name="id", unique = true)
 	public Long getId() {
-		return cardId;
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.cardId = id;
+		this.id = id;
 	}
 
 	public String getGame() {
@@ -63,7 +69,7 @@ public class Card {
 		this.details = details;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.card")
+	@OneToMany(mappedBy = "card")
 	public Set<Decklist> getDecklist() {
 		return decklist;
 	}

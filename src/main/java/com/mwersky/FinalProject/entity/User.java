@@ -2,6 +2,7 @@ package com.mwersky.FinalProject.entity;
 
 import java.util.Set;
 
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name= "id")
 	public Long getId() {
 		return id;
 	}

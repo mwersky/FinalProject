@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+//import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,31 +21,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Deck {
 	
 	
-	private Long deckId;
+	private Long id; // deck id
 	
-	private String deckName;
+	
+	private String name; //deck name
 	
 	@JsonIgnore
 	private User user;
+	
 	
 	private Set<Decklist> decklist;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	@Column(unique= true)
+	@Column(name="id")
 	public Long getDeckId() {
-		return deckId;
+		return id;
 	}
 	public void setDeckId(Long deckId) {
-		this.deckId = deckId;
+		this.id = deckId;
 	}
 	
-	
+	@Column(name="deck_name")
 	public String getDeckName() {
-		return deckName;
+		return name;
 	}
 	public void setDeckName(String deckName) {
-		this.deckName = deckName;
+		this.name = deckName;
 	}
 	
 	@ManyToOne
@@ -57,12 +59,11 @@ public class Deck {
 		this.user = user;
 	}
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "deck", cascade=CascadeType.ALL)
 	public Set<Decklist> getDecklist() {
 		return decklist;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.deck", cascade=CascadeType.ALL)
 	public void setDecklist(Set<Decklist> decklist) {
 		this.decklist = decklist;
 	}

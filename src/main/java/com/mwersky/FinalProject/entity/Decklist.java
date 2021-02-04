@@ -1,83 +1,53 @@
 package com.mwersky.FinalProject.entity;
 
+import javax.persistence.*;
+import java.io.Serializable;
 
-import javax.persistence.AssociationOverride;
-import javax.persistence.AssociationOverrides;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
-//import javax.persistence.Transient;
-
-@SuppressWarnings("serial")
 @Entity
-@Table(name = "decklist")
-@AssociationOverrides({
-        @AssociationOverride(name = "pk.deck", 
-            joinColumns = @JoinColumn(name = "deck_id")),
-        @AssociationOverride(name = "pk.card", 
-            joinColumns = @JoinColumn(name = "card_id")) })
-public class Decklist implements java.io.Serializable {
+@Table(name = "decklists")
+@IdClass(DecklistId.class)
+public class Decklist implements Serializable
+{
+    
+    private Card card;
 
-    private DecklistId pk = new DecklistId();
+    
+    private Deck deck;
+
+    
     private int amount;
-
-    public Decklist() {
-    }
-
-    @EmbeddedId //ctrl click DecklistId to see Primary key info
-    public DecklistId getPk() {
-        return pk;
-    }
-
-    public void setPk(DecklistId pk) {
-        this.pk = pk;
-    }
-
-//    @Transient //guide uses this tool. not sure it works for me.
-    public Deck getDeck() {
-        return getPk().getDeck();
-    }
-
-    public void setDeck(Deck deck) {
-        getPk().setDeck(deck);
-    }
-
-//    @Transient
+    
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "card_id", referencedColumnName = "id")
     public Card getCard() {
-        return getPk().getCard();
+        return card;
     }
 
     public void setCard(Card card) {
-        getPk().setCard(card);
+        this.card = card;
+    }
+    
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "deck_id", referencedColumnName = "id")
+    public Deck getDeck() {
+        return deck;
     }
 
-    @Column(name = "card_amount", nullable = false)
-    public int getAmount() {
-        return this.amount;
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+    @Column(name="number_of_cards")    
+	public int getAmount() {
+		return amount;
+	}
 
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+    
+    
 
-        Decklist that = (Decklist) o;
-
-        if (getPk() != null ? !getPk().equals(that.getPk())
-                : that.getPk() != null)
-            return false;
-
-        return true;
-    }
-
-    public int hashCode() {
-        return (getPk() != null ? getPk().hashCode() : 0);
-    }
 }
