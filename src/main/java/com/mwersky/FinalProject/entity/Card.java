@@ -16,12 +16,12 @@ import javax.persistence.Table;
 @Table(name = "cards")
 public class Card {
 
-	private Long id;
+	private Long cardId;
 	private String game;
 	private String cardName;
 	private String details;
 
-	private Set<DecklistId> decklistIds = new HashSet<DecklistId>(0);
+	private Set<Decklist> decklist = new HashSet<Decklist>(0);
 
 	public Card() {
 
@@ -31,11 +31,11 @@ public class Card {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	public Long getId() {
-		return id;
+		return cardId;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.cardId = id;
 	}
 
 	public String getGame() {
@@ -64,12 +64,12 @@ public class Card {
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.card")
-	public Set<DecklistId> getDecklistIds() {
-		return decklistIds;
+	public Set<Decklist> getDecklist() {
+		return decklist;
 	}
 
-	public void setDecklistIds(Set<DecklistId> decklistIds) {
-		this.decklistIds = decklistIds;
+	public void setDecklist(Set<Decklist> decklist) {
+		this.decklist = decklist;
 	}
 
 	

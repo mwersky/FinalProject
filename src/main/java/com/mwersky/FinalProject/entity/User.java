@@ -18,6 +18,7 @@ public class User {
 	private String hash;
 	private String username;
 	private String email;
+	
 	@JsonIgnore
 	private Set<Deck> decks;
 	

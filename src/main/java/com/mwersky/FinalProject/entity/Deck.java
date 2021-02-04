@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "decks")
 public class Deck {
@@ -23,7 +25,9 @@ public class Deck {
 	
 	private String deckName;
 	
+	@JsonIgnore
 	private User user;
+	
 	private Set<Decklist> decklist;
 	
 	@Id
@@ -45,7 +49,7 @@ public class Deck {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "userId")
+	@JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;
 	}
@@ -58,7 +62,7 @@ public class Deck {
 		return decklist;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.stock", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.deck", cascade=CascadeType.ALL)
 	public void setDecklist(Set<Decklist> decklist) {
 		this.decklist = decklist;
 	}

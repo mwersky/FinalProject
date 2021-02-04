@@ -8,11 +8,11 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+//import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "decklists")
+@Table(name = "decklist")
 @AssociationOverrides({
         @AssociationOverride(name = "pk.deck", 
             joinColumns = @JoinColumn(name = "deck_id")),
@@ -26,7 +26,7 @@ public class Decklist implements java.io.Serializable {
     public Decklist() {
     }
 
-    @EmbeddedId
+    @EmbeddedId //ctrl click DecklistId to see Primary key info
     public DecklistId getPk() {
         return pk;
     }
@@ -35,7 +35,7 @@ public class Decklist implements java.io.Serializable {
         this.pk = pk;
     }
 
-    @Transient
+//    @Transient //guide uses this tool. not sure it works for me.
     public Deck getDeck() {
         return getPk().getDeck();
     }
@@ -44,7 +44,7 @@ public class Decklist implements java.io.Serializable {
         getPk().setDeck(deck);
     }
 
-    @Transient
+//    @Transient
     public Card getCard() {
         return getPk().getCard();
     }
