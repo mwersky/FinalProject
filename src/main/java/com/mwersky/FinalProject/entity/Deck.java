@@ -1,14 +1,17 @@
 package com.mwersky.FinalProject.entity;
 
-//import java.util.Set;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +24,7 @@ public class Deck {
 	private String deckName;
 	
 	private User user;
-//	private Set<decklist> decklist;
+	private Set<Decklist> decklist;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -50,11 +53,13 @@ public class Deck {
 		this.user = user;
 	}
 	
-//	public Set<decklist> getDecklist() {
-//		return decklist;
-//	}
-//	
-//	public void setDecklist(Set<decklist> decklist) {
-//		this.decklist = decklist;
-//	}
+	@OneToMany(mappedBy = "user")
+	public Set<Decklist> getDecklist() {
+		return decklist;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.stock", cascade=CascadeType.ALL)
+	public void setDecklist(Set<Decklist> decklist) {
+		this.decklist = decklist;
+	}
 }
