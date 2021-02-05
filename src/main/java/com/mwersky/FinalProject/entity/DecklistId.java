@@ -26,7 +26,7 @@ public class DecklistId implements Serializable
         this.card = card;
     }
     
-    @Override //Everything from here on might not be necessary
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
