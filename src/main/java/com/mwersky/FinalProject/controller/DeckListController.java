@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mwersky.FinalProject.entity.Decklist;
+import com.mwersky.FinalProject.entity.DecklistBody;
 import com.mwersky.FinalProject.service.DecklistService;
+
 
 @RestController
 @RequestMapping("/users/{userId}/decks/{deckId}")
@@ -20,35 +21,29 @@ public class DeckListController {
 	@Autowired
 	private DecklistService service;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<Object> getDecklist() {
-		return new ResponseEntity<Object>(service.getDecklist(), HttpStatus.OK);
-	}
-	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Object> createDecklist(@RequestBody Decklist decklist, @PathVariable Long deckId, @PathVariable Long cardId,
-			@PathVariable int amount) {
+	public ResponseEntity<Object> createDecklist(@PathVariable Long deckId,@RequestBody DecklistBody body) {
 		try {
-			return new ResponseEntity<Object>(service.newCardEntry(decklist, deckId, cardId, amount), HttpStatus.OK);
+			return new ResponseEntity<Object>(service.newCardEntry(deckId, body.cardId, body.amount), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
-	public ResponseEntity<Object> updateDecklist(@RequestBody Decklist decklist, @PathVariable Long deckId) {
+	public ResponseEntity<Object> updateDecklist(@RequestBody DecklistBody body, @PathVariable Long deckId) {
 		try {
-			return new ResponseEntity<Object>(service.updateDecklist(decklist, deckId), HttpStatus.OK);
+			return new ResponseEntity<Object>(service.updateDecklist(body, deckId), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE)
-	public ResponseEntity<Object> deleteDecklistEntry(@PathVariable Long decklistId) {
+	public ResponseEntity<Object> deleteDecklistEntry(@PathVariable Long deckId, @RequestBody DecklistBody body) {
 		try {
-			service.deleteDecklist(decklistId);
-			return new ResponseEntity<Object>("Successfully deleted card entry with id: " + decklistId, HttpStatus.OK);
+			service.deleteDecklist(body, deckId);
+			return new ResponseEntity<Object>("Successfully deleted the card!" , HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
 		}

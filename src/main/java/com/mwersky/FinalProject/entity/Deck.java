@@ -43,11 +43,11 @@ public class Deck {
 	}
 	
 	@Column(name="deck_name")
-	public String getDeckName() {
+	public String getName() {
 		return name;
 	}
-	public void setDeckName(String deckName) {
-		this.name = deckName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	@ManyToOne

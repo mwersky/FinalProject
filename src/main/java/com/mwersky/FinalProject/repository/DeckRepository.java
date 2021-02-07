@@ -6,5 +6,6 @@ import com.mwersky.FinalProject.entity.Deck;
 
 public interface DeckRepository extends CrudRepository<Deck, Long> {
 	
-	public Deck findByDeckName(String deckName);
+	public Deck findByName(String name);
+	
 }

@@ -8,8 +8,17 @@ public class DecklistId implements Serializable
     private Long deck;
     private Long card;
     
+    //SECRET SAUCE
+    public DecklistId(Long deckId, Long cardId) {
+    	this.deck = deckId;
+    	this.card = cardId;
+	}
     
-    public Long getDeck() {
+    public DecklistId() {
+    	
+    }
+
+	public Long getDeck() {
         return deck;
     }
 

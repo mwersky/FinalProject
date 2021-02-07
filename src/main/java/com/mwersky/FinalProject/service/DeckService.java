@@ -33,7 +33,7 @@ public class DeckService {
 	if (foundDeck == null) {
 		throw new Exception("Post not found.");
 	}
-	foundDeck.setDeckName(deck.getDeckName());
+	foundDeck.setName(deck.getName());
 	return repo.save(foundDeck);
 	}
 	
@@ -45,7 +45,7 @@ public class DeckService {
 			throw new Exception("User not found.");
 		}
 		deck.setUser(user);
-		deck.setDeckName(deck.getDeckName());
+		deck.setName(deck.getName());
 		return repo.save(deck);
 	}
 

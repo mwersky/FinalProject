@@ -24,12 +24,12 @@ public class DeckController {
 		return new ResponseEntity<Object>(service.getAllDecks(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/{deckId}", method=RequestMethod.GET)
 	public ResponseEntity<Object> getDeck(@PathVariable Long deckId) {
 		return new ResponseEntity<Object>(service.getDeck(deckId), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{deckId}/update", method=RequestMethod.PUT)
 	public ResponseEntity<Object> updateDeck(@RequestBody Deck deck, @PathVariable Long deckId) {
 		try {
 			return new ResponseEntity<Object>(service.updateDeck(deck, deckId), HttpStatus.OK);			
@@ -39,9 +39,9 @@ public class DeckController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Object> createDeck(@RequestBody Deck deck, @PathVariable Long deckId) {
+	public ResponseEntity<Object> createDeck(@RequestBody Deck deck, @PathVariable Long userId) {
 		try {
-			return new ResponseEntity<Object>(service.createDeck(deck, deckId), HttpStatus.OK);
+			return new ResponseEntity<Object>(service.createDeck(deck, userId), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}

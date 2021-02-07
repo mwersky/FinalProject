@@ -1,8 +1,12 @@
 package com.mwersky.FinalProject.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "decklists")
 @IdClass(DecklistId.class)
@@ -11,7 +15,7 @@ public class Decklist implements Serializable
     
     private Card card;
 
-    
+    @JsonIgnore
     private Deck deck;
 
     
