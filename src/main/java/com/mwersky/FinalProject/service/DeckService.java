@@ -16,6 +16,7 @@ public class DeckService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
 
 	public Iterable<Deck> getAllDecks() {
 		return repo.findAll();
@@ -27,8 +28,8 @@ public class DeckService {
 	}
 
 
-	public Deck updateDeck(Deck deck, Long deckId) throws Exception {
-		Deck foundDeck = repo.findOne(deckId);
+	public Deck updateDeck(Deck deck, Long id) throws Exception {
+		Deck foundDeck = repo.findOne(id);
 	if (foundDeck == null) {
 		throw new Exception("Post not found.");
 	}

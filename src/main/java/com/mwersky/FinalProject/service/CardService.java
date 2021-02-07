@@ -36,7 +36,7 @@ public class CardService {
 	public Card updateCard(Card card, Long id) throws Exception {
 		try {
 			Card oldCard = repo.findOne(id);
-			oldCard.setCardName(card.getCardName());
+			oldCard.setName(card.getName());
 			oldCard.setGame(card.getDetails());
 			oldCard.setDetails(card.getDetails());
 			return repo.save(oldCard);

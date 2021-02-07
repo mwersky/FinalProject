@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "cards")
 public class Card {
@@ -22,11 +24,11 @@ public class Card {
 	private String game;
 	
 	
-	private String cardName;
+	private String name;
 	
 	private String details;
 	
-	
+	@JsonIgnore
 	private Set<Decklist> decklist = new HashSet<Decklist>(0);
 
 	public Card() {
@@ -52,13 +54,13 @@ public class Card {
 		this.game = game;
 	}
 
-	@Column(unique = true)
-	public String getCardName() {
-		return cardName;
+	@Column(name="card_name", unique = true)
+	public String getName() {
+		return name;
 	}
 
-	public void setCardName(String cardName) {
-		this.cardName = cardName;
+	public void setName(String cardName) {
+		this.name = cardName;
 	}
 
 	public String getDetails() {

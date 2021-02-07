@@ -25,6 +25,16 @@ public class DeckListController {
 		return new ResponseEntity<Object>(service.getDecklist(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Object> createDecklist(@RequestBody Decklist decklist, @PathVariable Long deckId, @PathVariable Long cardId,
+			@PathVariable int amount) {
+		try {
+			return new ResponseEntity<Object>(service.newCardEntry(decklist, deckId, cardId, amount), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	@RequestMapping(method=RequestMethod.PUT)
 	public ResponseEntity<Object> updateDecklist(@RequestBody Decklist decklist, @PathVariable Long deckId) {
 		try {
